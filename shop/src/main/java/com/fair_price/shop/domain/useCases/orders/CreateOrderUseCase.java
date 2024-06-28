@@ -7,6 +7,7 @@ import com.fair_price.shop.adapters.controllers.model.orders.OrdersRequest;
 import com.fair_price.shop.adapters.gateway.database.CustomerGateway;
 import com.fair_price.shop.adapters.gateway.database.DuckGateway;
 import com.fair_price.shop.adapters.gateway.database.OrdersGateway;
+import com.fair_price.shop.adapters.gateway.database.entities.CustomerEntity;
 import com.fair_price.shop.adapters.gateway.database.entities.OrdersEntity;
 import com.fair_price.shop.adapters.gateway.database.entities.StatusDuck;
 import com.fair_price.shop.domain.expections.DuckNotFoundException;
@@ -34,7 +35,7 @@ public class CreateOrderUseCase {
         
 
         var duck = this.duckGateway.findById(ordersRequest.getDuckId()).orElseThrow(() -> new DuckNotFoundException());
-        var customer = this.customerGateway.findbyId(ordersRequest.getCustomerId()).orElseThrow(() -> new UserNotFoundException());
+        CustomerEntity customer = this.customerGateway.findbyId(ordersRequest.getCustomerId()).orElseThrow(() -> new UserNotFoundException());
         
         if(duck.getStatus() == StatusDuck.SOLD){
             throw  new DuckSoldException();
@@ -43,16 +44,14 @@ public class CreateOrderUseCase {
         var entity = OrdersEntity.builder()
             .customerId(ordersRequest.getCustomerId())
             .duckId(ordersRequest.getDuckId())
-            .price(duck.getPrice())
-            .hasDiscount(customer.getDiscount() != null)
             .build();
         
 
         if(customer.getDiscount() != null){
             entity.setPrice((float)(duck.getPrice() * 0.8));
+        }else {
+            entity.setPrice(duck.getPrice());
         }
-
-        
 
         duck.setStatus(StatusDuck.SOLD);
 
