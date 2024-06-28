@@ -75,6 +75,8 @@ The database is modeled as follows
 	created_at: DATETIME
 ```
 
+<img width="482" alt="db" src="https://github.com/mmjck/desafio_backend_preco_justo/assets/55866244/11e72f5c-1321-4309-9dbe-197b7b722821">
+
 
 
 ## Endpoints 
