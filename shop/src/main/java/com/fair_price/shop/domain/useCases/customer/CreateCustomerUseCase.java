@@ -6,7 +6,7 @@ import com.fair_price.shop.adapters.controllers.model.customer.CustomerRequest;
 import com.fair_price.shop.adapters.gateway.database.CustomerGateway;
 import com.fair_price.shop.adapters.gateway.database.entities.DiscountEntity;
 import com.fair_price.shop.domain.factory.impl.CustomerFactory;
-import com.fair_price.shop.domain.useCases.discount.CreateRegisterDiscountUseCase;
+import com.fair_price.shop.domain.useCases.discount.CreateDiscountUseCase;
 import com.fair_price.shop.domain.useCases.dto.order.CustomerDTO;
 
 import jakarta.transaction.Transactional;
@@ -16,13 +16,13 @@ public class CreateCustomerUseCase {
     private final CustomerGateway gateway;
     private final CustomerFactory factory;
 
-    private final CreateRegisterDiscountUseCase createRegisterDiscountUseCase;
+    private final CreateDiscountUseCase createDiscountUseCase;
 
     public CreateCustomerUseCase(CustomerFactory factory, CustomerGateway gateway,
-            CreateRegisterDiscountUseCase createRegisterDiscountUseCase) {
+            CreateDiscountUseCase createDiscountUseCase) {
         this.factory = factory;
         this.gateway = gateway;
-        this.createRegisterDiscountUseCase = createRegisterDiscountUseCase;
+        this.createDiscountUseCase = createDiscountUseCase;
     }
 
     @Transactional
@@ -32,7 +32,7 @@ public class CreateCustomerUseCase {
         var data = gateway.create(entity);
 
         if (request.isHasDiscount()) {
-            var discount = createRegisterDiscountUseCase.call(DiscountEntity.builder().customerEntity(data).build());
+            var discount = createDiscountUseCase.call(DiscountEntity.builder().customerEntity(data).build());
             data.setDiscount(discount);
         }
 
