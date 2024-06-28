@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset abed:002
+--changeset create-duck:002
 
 CREATE TABLE IF NOT EXISTS ducks (
   id INTEGER PRIMARY KEY AUTO_INCREMENT, 

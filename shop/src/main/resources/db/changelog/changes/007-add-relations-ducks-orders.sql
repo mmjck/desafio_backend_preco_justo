@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset abed:007
+--changeset add-orders_duck:007
 
 
 ALTER TABLE orders

@@ -1,6 +1,6 @@
 
 --liquibase formatted sql
---changeset abed:004
+--changeset add-relation-discount-customer:004
 
 ALTER TABLE discounts
 ADD CONSTRAINT fk_discounts_customer

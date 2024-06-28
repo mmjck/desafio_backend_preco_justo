@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset abed:003
+--changeset create-discount:003
 
 CREATE TABLE IF NOT EXISTS discounts (
   id INTEGER PRIMARY KEY AUTO_INCREMENT,

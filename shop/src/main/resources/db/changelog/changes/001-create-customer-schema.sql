@@ -1,5 +1,5 @@
 --liquibase formatted sql
---changeset abed:001
+--changeset create-customer:001
 
 CREATE TABLE IF NOT EXISTS customers (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
