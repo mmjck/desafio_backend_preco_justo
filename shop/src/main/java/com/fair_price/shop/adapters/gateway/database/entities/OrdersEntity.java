@@ -38,18 +38,26 @@ import lombok.Setter;
                                                 @ColumnResult(name = "duckId", type = Integer.class),
                                                 @ColumnResult(name = "customerId", type = Integer.class),
                                                 @ColumnResult(name = "duckParentId", type = Integer.class),
-                                                @ColumnResult(name = "duckName", type = String.class),
                                                 @ColumnResult(name = "status", type = String.class),
                                                 @ColumnResult(name = "price", type = Float.class),
                                                 @ColumnResult(name = "hasDiscount", type = Boolean.class),
                                                 @ColumnResult(name = "customerName", type = String.class),
                                 }) })
 
+// Raw Query
+//
+//
+// SELECT  o.id as id,  o.price as price,  d.id as duckId,  d.status as status,  d.parent_id as duckParentId, c.id as customerId,  c.name as customerName,  
+// CASE  WHEN dis.customer_id IS NOT NULL THEN TRUE  ELSE FALSE  END AS hasDiscount from ducks d 
+// RIGHT JOIN orders o ON o.duck_id = d.id 
+// LEFT JOIN customers c ON o.customer_id = c.id  
+// LEFT JOIN discounts dis ON dis.customer_id=o.customer_id;
+//
+//
 @NamedNativeQuery(query = " SELECT "
                 + " o.id as id, "
+                + " o.price as price, "
                 + " d.id as duckId, "
-                + " d.name as duckName, "
-                + " d.price as price, "
                 + " d.status as status, "
                 + " d.parent_id as duckParentId,"
                 + " c.id as customerId, "
@@ -76,8 +84,6 @@ public class OrdersEntity implements Serializable {
 
         private float price;
 
-        @Column(name = "has_discount")
-        private boolean hasDiscount;
 
         @Column(name = "created_at")
         @CreationTimestamp
