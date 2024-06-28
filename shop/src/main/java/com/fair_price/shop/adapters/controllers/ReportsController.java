@@ -3,7 +3,7 @@ package com.fair_price.shop.adapters.controllers;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fair_price.shop.domain.useCases.report.GeneratePDFReportUseCase;
-import com.fair_price.shop.domain.useCases.report.GenerateExcelReportUseCase;
+import com.fair_price.shop.domain.useCases.report.GenerateSheetReportUseCase;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class ReportsController {
     @Autowired
-    GenerateExcelReportUseCase useCase;
+    GenerateSheetReportUseCase useCase;
 
     @Autowired
     GeneratePDFReportUseCase generatePDFReportUseCase;
