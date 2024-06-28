@@ -9,7 +9,7 @@
     <field name="status" class="java.lang.String"/>
     <field name="customerName" class="java.lang.String"/>
     <field name="hasDiscount" class="java.lang.String"/>
-    <field name="price" class="java.lang.Float"/>
+    <field name="price" class="java.lang.String"/>
     <field name="padding" class="java.lang.Integer"/>
 
     <title>
