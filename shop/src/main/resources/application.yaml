@@ -1,0 +1,13 @@
+server:
+    port: 8080
+
+spring:
+    application:
+        name: shop
+    datasource:
+        url: jdbc:mysql://localhost:3307/shopDB
+        username: root
+        password: password
+        driver-class-name: com.mysql.cj.jdbc.Driver
+    jpa:
+        show-sql: true
