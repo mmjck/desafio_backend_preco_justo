@@ -11,7 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ListOrderDTO {
         private int id;
-        private String duckName;
         private String customerName;
         private Float price;
         
