@@ -1,6 +1,5 @@
 package com.fair_price.shop.domain.useCases.orders;
 
-
 import org.springframework.stereotype.Service;
 
 import com.fair_price.shop.adapters.controllers.model.orders.OrdersRequest;
@@ -23,7 +22,7 @@ public class CreateOrderUseCase {
     private final CustomerGateway customerGateway;
     private final DuckGateway duckGateway;
 
-    public CreateOrderUseCase(OrdersGateway ordersGateway, CustomerGateway customerGateway, DuckGateway duckGateway)  {
+    public CreateOrderUseCase(OrdersGateway ordersGateway, CustomerGateway customerGateway, DuckGateway duckGateway) {
         this.customerGateway = customerGateway;
         this.ordersGateway = ordersGateway;
         this.duckGateway = duckGateway;
@@ -32,24 +31,23 @@ public class CreateOrderUseCase {
 
     @Transactional
     public OrderDTO call(OrdersRequest ordersRequest) throws Exception {
-        
 
         var duck = this.duckGateway.findById(ordersRequest.getDuckId()).orElseThrow(() -> new DuckNotFoundException());
-        CustomerEntity customer = this.customerGateway.findbyId(ordersRequest.getCustomerId()).orElseThrow(() -> new UserNotFoundException());
-        
-        if(duck.getStatus() == StatusDuck.SOLD){
-            throw  new DuckSoldException();
+        CustomerEntity customer = this.customerGateway.findbyId(ordersRequest.getCustomerId())
+                .orElseThrow(() -> new UserNotFoundException());
+
+        if (duck.getStatus() == StatusDuck.SOLD) {
+            throw new DuckSoldException();
         }
 
         var entity = OrdersEntity.builder()
-            .customerId(ordersRequest.getCustomerId())
-            .duckId(ordersRequest.getDuckId())
-            .build();
-        
+                .customerId(ordersRequest.getCustomerId())
+                .duckId(ordersRequest.getDuckId())
+                .build();
 
-        if(customer.getDiscount() != null){
-            entity.setPrice((float)(duck.getPrice() * 0.8));
-        }else {
+        if (customer.getDiscount() != null) {
+            entity.setPrice((float) (duck.getPrice() * 0.8));
+        } else {
             entity.setPrice(duck.getPrice());
         }
 
@@ -57,8 +55,7 @@ public class CreateOrderUseCase {
 
         var response = ordersGateway.create(entity);
         this.duckGateway.update(duck);
-        
-        
+
         return OrderDTO.mapper(response);
     }
 }

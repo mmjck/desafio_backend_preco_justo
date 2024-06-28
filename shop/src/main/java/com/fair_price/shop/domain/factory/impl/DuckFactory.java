@@ -11,7 +11,7 @@ public class DuckFactory implements BaseFactory<DuckRequest, DuckEntity> {
         return DuckEntity
                 .builder()
                 .price(request.getPrice())
-                .parentId(request.getParentId() == null ? request.getParentId() : null)
+                .parentId(request.getParentId())
                 .build();
     }
 

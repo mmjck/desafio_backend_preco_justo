@@ -76,9 +76,13 @@ public class GenerateSheetReportGatewayImpl implements GenerateSheetReportGatewa
         for (ReportModel d : excelData) {
             var order = graphService.getOrderHashMap().get(d.getDuckId());
             if (order != null) {
-                d.setPrice(order.getPrice());
+                d.setPrice(FormatterData.formatPrice((double)order.getPrice()));
                 d.setCustomerName(order.getCustomerName());
-                d.setHasDiscount(FormatterData.formatterHasDiscount(order.getHasDiscount()));
+                d.setHasDiscount(FormatterData.formatHasDiscount(order.getHasDiscount()));
+            }else {
+                d.setPrice("-");
+                d.setCustomerName("-");
+                d.setHasDiscount("-");
             }
 
         }
@@ -104,9 +108,13 @@ public class GenerateSheetReportGatewayImpl implements GenerateSheetReportGatewa
             }
 
             cells.get(rowData.getPadding()).setCellValue(rowData.getName());
+            System.out.println(rowData.getStatus());
+            System.out.println(rowData.getCustomerName());
+            System.out.println(rowData.getHasDiscount());
             cells.get(paddingMax + 1).setCellValue(rowData.getStatus());
             cells.get(paddingMax + 2).setCellValue(rowData.getCustomerName());
-            cells.get(paddingMax + 2).setCellValue(rowData.getHasDiscount());
+            cells.get(paddingMax + 3).setCellValue(rowData.getHasDiscount());
+            cells.get(paddingMax + 4).setCellValue(rowData.getHasDiscount());
         }
 
 
@@ -141,7 +149,7 @@ public class GenerateSheetReportGatewayImpl implements GenerateSheetReportGatewa
         c.setCellStyle(headerStyle);
 
         sheet.addMergedRegion(new CellRangeAddress(0, 0, 0, paddingMax + headers.length - 1));
-        sheet.autoSizeColumn(paddingMax + 3);
+        // sheet.autoSizeColumn(paddingMax + 3);
 
     }
 

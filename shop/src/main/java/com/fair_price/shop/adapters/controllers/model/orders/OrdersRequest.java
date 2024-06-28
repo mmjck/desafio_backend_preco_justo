@@ -17,7 +17,7 @@ public class OrdersRequest {
     @JsonProperty(value = "duck_id")
     private Integer duckId;
 
-    @JsonProperty(value = "has_discount")
+    @JsonProperty(value = "price")
     private Boolean price;
 
 

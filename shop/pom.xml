@@ -8,11 +8,16 @@
 		<version>3.3.1</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	
+	
+	
 	<groupId>com.fair_price</groupId>
-	<artifactId>duck</artifactId>
+	<artifactId>shopclear</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>duck</name>
-	<description>Demo project for Spring Boot</description>
+	<name>shop</name>
+	
+
+
 	<url/>
 	<licenses>
 		<license/>

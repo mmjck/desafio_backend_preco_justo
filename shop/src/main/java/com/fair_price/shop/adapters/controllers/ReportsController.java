@@ -24,12 +24,11 @@ public class ReportsController {
     @GetMapping("/reports")
     public ResponseEntity<Object> create(
             @RequestParam(name = "type", defaultValue = "sheet") String type) {
-
+                
         try {
-            if (type == "pdf") {
+            if (type.equals("pdf")) {
                 return executePDFMode();
             }
-
             return executeSheetMode();
         } catch (Exception e) {
             System.err.println(e);
@@ -60,7 +59,6 @@ public class ReportsController {
 
             HttpHeaders headers = createHeadersToPDFFile();
             headers.setContentLength(response.length);
-
             return ResponseEntity.ok().headers(headers).body(response);
         } catch (Exception e) {
             throw e;

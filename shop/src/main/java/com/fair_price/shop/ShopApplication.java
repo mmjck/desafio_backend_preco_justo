@@ -1,3 +1,4 @@
+
 package com.fair_price.shop;
 
 import org.springframework.boot.SpringApplication;

@@ -16,5 +16,5 @@ public class ReportModel {
     private String customerName;
     private String status;
     private String hasDiscount;
-    private float price;
+    private String price;
 }

@@ -42,7 +42,7 @@ public class GraphNode {
             model.setName("Pato" + " " + "Filho" + " " + currentPrefix);
         }
 
-        model.setStatus(FormatterData.formatterStatus(data.getStatus()));
+        model.setStatus(FormatterData.formatStatus(data.getStatus()));
         excelData.add(model);
 
         if (children.isEmpty()) {

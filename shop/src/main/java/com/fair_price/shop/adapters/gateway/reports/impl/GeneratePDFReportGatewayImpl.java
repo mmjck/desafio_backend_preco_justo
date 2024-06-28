@@ -22,8 +22,8 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
-public class GeneratePDFReportGatewayImpl implements GeneratePDFReportGateway{
-    
+public class GeneratePDFReportGatewayImpl implements GeneratePDFReportGateway {
+
     private final GraphService graphService;
 
     GeneratePDFReportGatewayImpl(GraphService graphService) {
@@ -40,9 +40,7 @@ public class GeneratePDFReportGatewayImpl implements GeneratePDFReportGateway{
         JasperReport jasperReport = JasperCompileManager.compileReport(reportStream);
 
         Map<Integer, GraphNode> graph = graphService.getStruct();
-        
-        
-        
+
         List<GraphNode> roots = new ArrayList<>();
         for (GraphNode node : graph.values()) {
             if (node.getData().getParentId() == null) {
@@ -60,10 +58,13 @@ public class GeneratePDFReportGatewayImpl implements GeneratePDFReportGateway{
         for (ReportModel d : excelData) {
             var order = graphService.getOrderHashMap().get(d.getDuckId());
             if (order != null) {
-                d.setPrice(order.getPrice());
+                d.setPrice(FormatterData.formatPrice((double) order.getPrice()));
                 d.setCustomerName(order.getCustomerName() != null ? order.getCustomerName() : "--");
-                d.setHasDiscount(FormatterData.formatterHasDiscount(order.getHasDiscount()));
-
+                d.setHasDiscount(FormatterData.formatHasDiscount(order.getHasDiscount()));
+            } else {
+                d.setPrice("-");
+                d.setCustomerName("-");
+                d.setHasDiscount("-");
             }
         }
 
