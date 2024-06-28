@@ -208,10 +208,10 @@ Endpoints to request **REPORTS FILES**
 
 Use browser in this case
 
+EXAMPLE OF FILE:
 
+![Captura de Tela 2024-06-28 às 18 18 57](https://github.com/mmjck/desafio_backend_preco_justo/assets/55866244/5a9821ab-bf05-417d-a434-eab800a49870)
 
-
-EXAMPLE MODEL:
 
 `GET /reports?type=pdf`
 
@@ -219,4 +219,7 @@ EXAMPLE MODEL:
 ###  PDF
 
 
-EXAMPLE MODEL:
+EXAMPLE OF FILE:
+
+![Captura de Tela 2024-06-28 às 18 18 19](https://github.com/mmjck/desafio_backend_preco_justo/assets/55866244/7cc0e85a-8a5a-4483-b2ae-235a0337f1a0)
+
