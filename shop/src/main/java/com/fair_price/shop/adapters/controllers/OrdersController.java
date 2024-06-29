@@ -43,7 +43,7 @@ public class OrdersController {
             var response = createOrderUseCase.call(entity);
             return ResponseEntity.ok().body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

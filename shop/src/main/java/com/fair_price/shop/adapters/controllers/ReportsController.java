@@ -32,7 +32,7 @@ public class ReportsController {
             return executeSheetMode();
         } catch (Exception e) {
             System.err.println(e);
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
     }
