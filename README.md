@@ -225,3 +225,13 @@ EXAMPLE OF FILE:
 
 ![Captura de Tela 2024-06-28 às 18 18 19](https://github.com/mmjck/desafio_backend_preco_justo/assets/55866244/7cc0e85a-8a5a-4483-b2ae-235a0337f1a0)
 
+
+
+## Challenges encountered
+
+
+ I had difficulty creating the duck hierarchy in the found file. The solution I found was to pass a property 
+ called padding to each duck. This property is spacing between the child duck and the parent duck. This way, create n columns (padding value) to the left of the duck to simulate a hierarchy
+
+
+ I couldn't find a quick way to add hierarchy of elements with the same structure used for Sheet files
