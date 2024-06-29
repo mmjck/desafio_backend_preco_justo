@@ -1,10 +1,10 @@
 package com.fair_price.shop.adapters.controllers.model.duck;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 
 @Builder
@@ -12,7 +12,10 @@ import lombok.Setter;
 @Setter
 public class DuckRequest {
     
-    private float price;
+    @NonNull
+    private Float price;
+
+    
     
     @JsonProperty(value = "parent_id")
     private Integer parentId;

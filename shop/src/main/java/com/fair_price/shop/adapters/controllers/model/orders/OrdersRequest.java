@@ -18,7 +18,7 @@ public class OrdersRequest {
     private Integer duckId;
 
     @JsonProperty(value = "price")
-    private Boolean price;
+    private Float price;
 
 
 }
